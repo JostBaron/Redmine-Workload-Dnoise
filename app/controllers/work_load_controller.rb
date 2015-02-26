@@ -28,6 +28,9 @@ class WorkLoadController < ApplicationController
     @issuesForWorkload = ListUser::getOpenIssuesForUsers(@usersToDisplay)
     @monthsToRender = ListUser::getMonthsInTimespan(@timeSpanToDisplay)
     @workloadData   = ListUser::getHoursPerUserIssueAndDay(@issuesForWorkload, @timeSpanToDisplay, @today)
+
+    # DX_Sadaf: adding select box for groups
+    @groups = Group.preload(:users).order('lastname').all
   end
 
 

@@ -1,0 +1,19 @@
+
+.groups{
+    margin-top:10px;
+}
+
+.group-checkboxes{
+    margin-left:150px;
+}
+.select-all, .select-none{
+    cursor: pointer;
+}
+
+.select-all, .select-none, .selected-count {
+    margin:10px 0px;
+}
+
+.group-checkbox{
+    float:left;margin: 0px 5px 10px 5px;
+}

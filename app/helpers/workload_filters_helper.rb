@@ -12,4 +12,17 @@ module WorkloadFiltersHelper
 
     return result.html_safe
   end
+
+  def group_params_nil?
+    if params.nil?
+      return true
+    elsif params[:workload].nil?
+      return true
+    elsif params[:workload][:groups].nil?
+      return true
+    else
+      return false
+    end
+  end
+
 end
