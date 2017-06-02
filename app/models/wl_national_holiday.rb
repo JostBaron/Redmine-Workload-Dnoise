@@ -12,7 +12,7 @@ class WlNationalHoliday < ActiveRecord::Base
   after_destroy :clearCache
   
   def check_datum
-    if self.date_from && self.date_to && (start_changed? || end_changed?) && self.date_to < self.date_from 
+    if self.date_from && self.date_to && (date_from_changed? || date_to_changed?) && self.date_to < self.date_from 
        errors.add :date_to, :workload_end_before_start 
     end 
   end
