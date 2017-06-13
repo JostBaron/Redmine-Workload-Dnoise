@@ -1,19 +1,19 @@
 class WlNationalHoliday < ActiveRecord::Base
   unloadable
-  attr_accessible :start
-  attr_accessible :end
+  attr_accessible :date_from
+  attr_accessible :date_to
   attr_accessible :reason
-  validates :start, :date => true
-  validates :end,   :date => true
-  validates_presence_of :start, :end, :reason
+  validates :date_from, :date => true
+  validates :date_to, :date => true
+  validates_presence_of :date_from, :date_to, :reason
   validate :check_datum
   
   after_save :clearCache
   after_destroy :clearCache
   
   def check_datum
-    if self.start && self.end && (start_changed? || end_changed?) && self.end < self.start 
-       errors.add :end, :workload_end_before_start 
+    if self.date_from && self.date_to && (date_from_changed? || date_to_changed?) && self.date_to < self.date_from 
+       errors.add :date_to, :workload_end_before_start 
     end 
   end
   

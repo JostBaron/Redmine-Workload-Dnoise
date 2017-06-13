@@ -13,8 +13,8 @@
 		<% for holiday in wl_national_holiday -%>
 			<tr class="<%= cycle("odd", "even") %>">
 				<td><%= holiday.id.to_s %></td>
-				<td><%= holiday.start.blank? ? '' : holiday.start.to_date.to_s %></td>
-				<td><%= holiday.end.blank? ? '' : holiday.end.to_date.to_s %></td>
+				<td><%= holiday.date_from.blank? ? '' : holiday.date_from.to_date.to_s %></td>
+				<td><%= holiday.date_to.blank? ? '' : holiday.date_to.to_date.to_s %></td>
 				<td><%= holiday.reason.blank? ? '' : holiday.reason %></td>				
 				<% if is_allowed %>
 	      			<td><%= link_to l(:button_edit), edit_wl_national_holiday_path(holiday, :year => @this_year) %></td>
