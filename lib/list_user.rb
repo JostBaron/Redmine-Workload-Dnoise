@@ -21,17 +21,13 @@ class ListUser
 
     userIDs = users.map(&:id)
 
-    issue = Issue.arel_table
-    project = Project.arel_table
-    issue_status = IssueStatus.arel_table
-
     # Fetch all issues that ...
     issues = Issue.joins(:project).
                    joins(:status).
                    joins(:assigned_to).
-                        where(issue[:assigned_to_id].in(userIDs)).      # Are assigned to one of the interesting users
-                        where(project[:status].eq(1)).                  # Do not belong to an inactive project
-                        where(issue_status[:is_closed].eq(false))       # Is open
+                        where(:issue => { :assigned_to_id => userIDs }). # Are assigned to one of the interesting users
+                        where(:project => { :status => 1 }).              # Do not belong to an inactive project
+                        where(:status => { :is_closed => false })         # Is open
 
     #  Filter out all issues that have children; They do not *directly* add to
     # the workload
